@@ -41,4 +41,4 @@ mongoose
     console.log("database connection failed. exiting now...", error);
     process.exi;
   });
-app.listen(PORT, () => console.log("serverr Running"));
+app.listen(PORT || 1000, () => console.log("serverr Running"));
