@@ -1,27 +1,24 @@
 const projectServices = require("../services/project.services");
-const token = require("../services/token.service");
-const TokenModel = require("../models/projectModel");
 
 const addProject = async (req, res) => {
-  const register = await projectServices.addProject(req.body);
-  if (register === "0") {
-    return res.status(400).send({
-      data: [],
-      status: 400,
-      message: "Already Registered",
-    });
-  } else {
-    const getToken = await token.generateAuthTokens(register);
-    let user = await deletePassword(register);
-    return res.send({
-      data: user,
-      token: getToken,
-      status: 200,
-      message: "Registered",
-    });
-  }
+  const project = await projectServices.addProject(req.body, req?.userId);
+  return res.send({
+    data: project,
+    status: 200,
+    message: "Project Added SuccessFully",
+  });
+};
+
+const getUserProjects = async (req, res) => {
+  const projects = await projectServices.getUserProjects(req?.userId);
+  return res.send({
+    data: projects,
+    status: 200,
+    message: "Projects Retreived SuccessFully",
+  });
 };
 
 module.exports = {
   addProject,
+  getUserProjects,
 };

@@ -10,3 +10,7 @@ router.post(
   validate(projectValidations.addProject),
   projectController.addProject
 );
+
+router.get("/getuserprojects", AUTHENTICATE, projectController.getUserProjects);
+
+module.exports = router;
