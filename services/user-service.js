@@ -1,6 +1,5 @@
 const UserModel = require("../models/user");
 const TokenModel = require("../models/token.model");
-
 const { hashPassword, unHashPassword } = require("../utils/hashing");
 const token = require("../services/token.service");
 
